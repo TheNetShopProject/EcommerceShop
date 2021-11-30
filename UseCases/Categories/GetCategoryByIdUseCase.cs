@@ -1,8 +1,8 @@
 ﻿using CoreBusiness;
 using UseCases.DataStorePluginInterfaces;
-using UseCases.UseCaseInterfaces;
+using UseCases.UseCaseInterfaces.Categories;
 
-namespace UseCases
+namespace UseCases.Categories
 {
     public class GetCategoryByIdUseCase : IGetCategoryByIdUseCase
     {

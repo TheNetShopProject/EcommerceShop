@@ -1,0 +1,48 @@
+﻿@page "/products"
+@inject UseCases.UseCaseInterfaces.Products.IViewProductsUseCase viewProductsUseCase
+<h3>Products</h3>
+
+@if (products != null)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.CategoryId</td>
+                <td>@product.Price</td>
+                <td>@product.Quantity</td>              
+            </tr>
+        }
+    </tbody>
+</table>
+
+}
+<br />
+
+
+@code {
+
+    private IEnumerable<Product> products;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GetProducts();
+    }
+
+    private void GetProducts()
+    {
+        products = viewProductsUseCase.Execute();
+    }
+}

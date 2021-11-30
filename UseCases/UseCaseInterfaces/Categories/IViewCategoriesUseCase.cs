@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CoreBusiness;
 
-namespace UseCases.UseCaseInterfaces
+namespace UseCases.UseCaseInterfaces.Categories
 {
     public interface IViewCategoriesUseCase
     {

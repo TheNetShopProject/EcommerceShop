@@ -1,7 +1,7 @@
 ﻿@page "/editcategory/{CategoryId}"
 @inject NavigationManager navigationManager
-@inject  UseCases.UseCaseInterfaces.IGetCategoryByIdUseCase getCategoryById
-@inject  UseCases.UseCaseInterfaces.IEditCategoryUseCase editCategoryUseCase
+@inject  UseCases.UseCaseInterfaces.Categories.IGetCategoryByIdUseCase getCategoryById
+@inject  UseCases.UseCaseInterfaces.Categories.IEditCategoryUseCase editCategoryUseCase
 <h3>Edit Category</h3>
 
 @if (category != null)
