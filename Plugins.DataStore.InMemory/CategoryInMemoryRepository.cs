@@ -15,8 +15,8 @@ namespace Plugins.DataStore.InMemory
             categories = new List<Category>()
             {
                 new Category{CategoryId = 1, Name = "Bevarage", Description = "Bevarage"},
-                new Category{CategoryId = 1, Name = "Bakery", Description = "Bakery"},
-                new Category{CategoryId = 1, Name = "Meat", Description = "Meat"}
+                new Category{CategoryId = 2, Name = "Bakery", Description = "Bakery"},
+                new Category{CategoryId = 3, Name = "Meat", Description = "Meat"}
             };
         }
         public IEnumerable<Category> GetCategories()
@@ -30,6 +30,18 @@ namespace Plugins.DataStore.InMemory
             var maxId = categories.Max(x => x.CategoryId);
             category.CategoryId = maxId + 1;
             categories.Add(category);
+        }
+
+        public void Update(Category category)
+        {
+            var categoryToUpdate = getCategoryById(category.CategoryId);
+            if(categoryToUpdate != null)
+                categoryToUpdate = category;
+        }
+
+        public Category getCategoryById(int categoryId)
+        {
+            return categories.SingleOrDefault(x => x.CategoryId == categoryId);
         }
     }
 }
