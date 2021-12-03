@@ -1,32 +1,40 @@
 ﻿@page "/products"
+@inject NavigationManager navigationManager
 @inject UseCases.UseCaseInterfaces.Products.IViewProductsUseCase viewProductsUseCase
+@inject UseCases.UseCaseInterfaces.Categories.IGetCategoryByIdUseCase getCategoryById
 <h3>Products</h3>
 
 @if (products != null)
 {
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in products)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@product.Name</td>
-                <td>@product.CategoryId</td>
-                <td>@product.Price</td>
-                <td>@product.Quantity</td>              
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@getCategoryById.Execute(product.CategoryId).Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Quantity</td>
+                    @*<td>
+                        <button type="button" @onclick="EditProduct(product.ProductId)">Edit</button>
+                        <button type="button" @onclick="DeleteProduct(product.ProductId)">Delete</button>
+                    </td>*@
+                </tr>
+                
+            }
 
+        </tbody>
+    </table>
+    <button type="button" @onclick="AddProduct" class="btn btn-primary">Add Product</button>
 }
 <br />
 
@@ -45,4 +53,10 @@
     {
         products = viewProductsUseCase.Execute();
     }
+
+    private void AddProduct()
+    {
+        navigationManager.NavigateTo("/addproduct");
+    }
+
 }

@@ -45,6 +45,7 @@ namespace EcommerceShop
             services.AddTransient<IEditCategoryUseCase, EditCategoryUseCase>();
             services.AddTransient<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
             services.AddTransient<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
+            services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 
             services.AddTransient<IViewProductsUseCase, ViewProductsUseCase>();
         }

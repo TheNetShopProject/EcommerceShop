@@ -21,6 +21,21 @@ namespace Plugins.DataStore.InMemory
             };
         }
 
+        public void AddProduct(Product product)
+        {
+            if (Products.Any(x => x.Name.Equals(product.Name, StringComparison.OrdinalIgnoreCase))) return;
+            if(product != null & Products.Count > 0)
+            {
+                product.ProductId = Products.Max(x => x.ProductId) + 1;
+                Products.Add(product);
+                return;
+            }
+            product.ProductId = 1;
+            Products.Add(product);
+            return;
+            
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return Products; 
