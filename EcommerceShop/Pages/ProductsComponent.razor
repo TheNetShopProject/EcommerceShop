@@ -2,6 +2,7 @@
 @inject NavigationManager navigationManager
 @inject UseCases.UseCaseInterfaces.Products.IViewProductsUseCase viewProductsUseCase
 @inject UseCases.UseCaseInterfaces.Categories.IGetCategoryByIdUseCase getCategoryById
+@inject UseCases.UseCaseInterfaces.Products.IDeleteProductUseCase deleteProductUseCase
 <h3>Products</h3>
 
 @if (products != null)
@@ -24,10 +25,10 @@
                     <td>@getCategoryById.Execute(product.CategoryId).Name</td>
                     <td>@product.Price</td>
                     <td>@product.Quantity</td>
-                    @*<td>
-                        <button type="button" @onclick="EditProduct(product.ProductId)">Edit</button>
-                        <button type="button" @onclick="DeleteProduct(product.ProductId)">Delete</button>
-                    </td>*@
+                    <td>
+                        <button type="button" class="btn btn-primary" @onclick="() => EditProduct(product.ProductId)">Edit</button>
+                        <button type="button" class="btn btn-danger" @onclick="() => DeleteProduct(product.ProductId)">Delete</button>
+                    </td>
                 </tr>
                 
             }
@@ -59,4 +60,14 @@
         navigationManager.NavigateTo("/addproduct");
     }
 
+    private void EditProduct(int productId)
+    {
+        navigationManager.NavigateTo($"/editproduct/{productId}");
+    }
+
+    private void DeleteProduct(int productId)
+    {
+        deleteProductUseCase.Execute(productId);
+        GetProducts();
+    }
 }
