@@ -18,20 +18,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in products)
-            {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@getCategoryById.Execute(product.CategoryId).Name</td>
-                    <td>@product.Price</td>
-                    <td>@product.Quantity</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" @onclick="() => EditProduct(product.ProductId)">Edit</button>
-                        <button type="button" class="btn btn-danger" @onclick="() => DeleteProduct(product.ProductId)">Delete</button>
-                    </td>
-                </tr>
-                
-            }
+        @foreach (var product in products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@getCategoryById.Execute(product.CategoryId)?.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <button type="button" class="btn btn-primary" @onclick="() => EditProduct(product.ProductId)">Edit</button>
+                    <button type="button" class="btn btn-danger" @onclick="() => DeleteProduct(product.ProductId)">Delete</button>
+                </td>
+            </tr>
+
+        }
 
         </tbody>
     </table>
